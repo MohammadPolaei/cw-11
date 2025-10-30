@@ -29,7 +29,7 @@ export function Form() {
   <input type="checkbox" id="rememberMe" />
   <label for="rememberMe">مرا به خاطر بسپار</label>
   </div> 
-  <button class=" bg-amber-300 px-5 rounded-[5px] py-3">ارسال</button>
+  <button id="submitButton" class=" bg-amber-300 px-5 rounded-[5px] py-3">ارسال</button>
 
   `;
 	return form;
