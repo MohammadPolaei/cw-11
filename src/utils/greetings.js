@@ -6,11 +6,10 @@ const cookie = document.cookie;
 if (document.cookie) {
 	mainDiv.innerHTML = `
  hi ${document.cookie} . welcome !
+ </br><button id="exitButton" class="bg-amber-900 text-white px-5 rounded-[5px] m-5 py-3">خروج</button>
+ </br><button id="testButton" class="bg-blue-950 text-white px-5 rounded-[5px] m-5 py-3">تست پروژه</button>
 `;
 }
-
-mainDiv.innerHTML += `</br><button id="exitButton" class="bg-amber-900 text-white px-5 rounded-[5px] m-5 py-3">خروج</button>
-`;
 
 const button = document.getElementById("exitButton");
 button.addEventListener("click", () => {
@@ -20,10 +19,11 @@ button.addEventListener("click", () => {
 	window.location.href = "../../index.html";
 });
 
-mainDiv.innerHTML += `</br><button id="testButton" class="bg-blue-950 text-white px-5 rounded-[5px] m-5 py-3">تست پروژه</button>
-`;
-
 const testButton = document.getElementById("testButton");
 testButton.addEventListener("click", () => {
+	console.log("local storage : ");
 	console.log(localStorage);
+	console.log("session storage : ");
+	console.log(sessionStorage);
+	console.log("cookies : " + document.cookie);
 });
