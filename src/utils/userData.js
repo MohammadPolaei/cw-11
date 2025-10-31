@@ -27,14 +27,12 @@ submitButton.addEventListener("click", () => {
 
 async function validateUser(username, password) {
 	try {
-		console.log(username, password);
 		const response = await fetch(
 			"https://6904988a6b8dabde49645ae6.mockapi.io/userData"
 		);
 		const users = await response.json();
 
 		// Check both username and password
-		console.log(users);
 
 		const found = users.some(
 			(user) => user.userName === username && user.password === password
