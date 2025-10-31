@@ -1,23 +1,49 @@
+import "../style.css";
+
 const userNameInput = document.getElementById("userName");
 const userPassInput = document.getElementById("userPass");
 const submitButton = document.getElementById("submitButton");
 const checkBox = document.getElementById("rememberMe");
 
 submitButton.addEventListener("click", () => {
-	if (checkBox.checked) {
-		localStorage.setItem("username", userNameInput.value);
-		// console.log(localStorage.getItem("username"));
-	} else {
-		sessionStorage.setItem("username", userNameInput.value);
-	}
-	// const d = new Date();
-	// d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-	// let expires = "expires=" + d.toUTCString();
-	// login
-	document.cookie = "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-
-	const expiredDate = new Date(Date.now() + 1 * 60 * 1000);
-
-	document.cookie = `${userNameInput.value}; expires=${expiredDate}`;
-	window.location.href = "../../user.html";
+	validateUser(userNameInput.value, userPassInput.value).then((isValid) => {
+		document.cookie =
+			"username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+		const expiredDate = new Date(Date.now() + 1 * 60 * 1000);
+		if (isValid) {
+			console.log("✅ User authenticated");
+			document.cookie = `userName=${userNameInput.value}; expires=${expiredDate}`;
+			window.location.href = "../../user.html";
+		} else {
+			console.log("❌ Invalid username or password");
+			const theAlert = document.getElementById("alert");
+			theAlert.classList.add("text-[red]", "text-left");
+			theAlert.innerHTML = `The username and password is not correct !`;
+		}
+	});
 });
+
+// user validation
+
+async function validateUser(username, password) {
+	try {
+		console.log(username, password);
+		const response = await fetch(
+			"https://6904988a6b8dabde49645ae6.mockapi.io/userData"
+		);
+		const users = await response.json();
+
+		// Check both username and password
+		console.log(users);
+
+		const found = users.some(
+			(user) => user.userName === username && user.password === password
+		);
+		console.log(found);
+
+		return found; // true if valid, false otherwise
+	} catch (error) {
+		console.error("Error:", error);
+		return false;
+	}
+}
