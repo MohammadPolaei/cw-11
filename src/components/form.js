@@ -21,10 +21,10 @@ export function Form() {
 
 	form.innerHTML = `
   <label>نام کاربری :</label>
-  <input class="border-2 rounded-[5px]" type="text" id="userName">
+  <input placeholder="نام کاربری" class="border-2 border-[#00000033] h-10 px-2 placeholder:text-[#00000022] rounded-[5px]" type="text" id="userName">
   
   <label>پسورد :</label>
-  <input class="border-2 rounded-[5px]" type="password" id="userPass">
+  <input placeholder="کلمه عبور" class="border-2 border-[#00000033] h-10 px-2 placeholder:text-[#00000022] rounded-[5px]" type="password" id="userPass">
   <div>
   <input type="checkbox" id="rememberMe" />
   <label for="rememberMe">مرا به خاطر بسپار</label>
