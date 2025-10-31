@@ -39,7 +39,6 @@ async function validateUser(username, password) {
 		const found = users.some(
 			(user) => user.userName === username && user.password === password
 		);
-		console.log(found);
 
 		return found; // true if valid, false otherwise
 	} catch (error) {
